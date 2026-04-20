@@ -19,7 +19,7 @@
       padding: 40px 16px 80px;
     }
 
-    header { text-align: center; margin-bottom: 40px; }
+    header { text-align: center; margin-bottom: 32px; }
 
     header h1 {
       font-size: 2.4rem;
@@ -32,6 +32,57 @@
     }
 
     header p { color: #8888aa; margin-top: 8px; font-size: 1rem; }
+
+    /* Tier banner */
+    #tier-banner {
+      width: 100%;
+      max-width: 740px;
+      border-radius: 10px;
+      padding: 10px 18px;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    #tier-banner.free {
+      background: #1a1a24;
+      border: 1px solid #2a2a3a;
+      color: #8888aa;
+    }
+    #tier-banner.paid {
+      background: #0e1e18;
+      border: 1px solid #2a4a38;
+      color: #60d090;
+    }
+    #tier-banner .tier-label { font-weight: 600; }
+    #tier-banner .tier-expires { font-size: 0.78rem; color: #4a9a6a; }
+    #tier-banner .upgrade-link {
+      font-size: 0.8rem;
+      color: #c084fc;
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    /* Unlock success notice */
+    #unlock-notice {
+      display: none;
+      width: 100%;
+      max-width: 740px;
+      background: #0e1e18;
+      border: 1px solid #2a4a38;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.88rem;
+      color: #60d090;
+      margin-bottom: 16px;
+      text-align: center;
+    }
 
     .card {
       background: #1a1a24;
@@ -68,25 +119,16 @@
       padding: 14px 16px;
       transition: border-color 0.15s;
     }
+    .file-item.locked { opacity: 0.45; }
     .file-item.dragging { opacity: 0.4; border-color: #7c6ff7; }
     .file-item.drag-target { border-color: #c084fc; background: #1e1e30; }
 
-    .file-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: grab;
-    }
-
+    .file-row { display: flex; align-items: center; gap: 12px; cursor: grab; }
     .file-icon { font-size: 1.4rem; flex-shrink: 0; }
-
     .file-info { flex: 1; min-width: 0; }
     .file-name {
-      font-size: 0.9rem;
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 0.9rem; font-weight: 500;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       color: #d8d8f0;
     }
     .file-meta { font-size: 0.75rem; color: #6666aa; margin-top: 2px; }
@@ -101,86 +143,54 @@
     }
     .remove-btn:hover { color: #f07070; background: #2a1a1a; }
 
-    /* Page selector */
-    .page-selector {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #22222e;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .page-selector label {
-      font-size: 0.78rem;
-      color: #7777aa;
+    .lock-badge {
+      font-size: 0.72rem;
+      background: #2a1a3a;
+      border: 1px solid #5a2a7a;
+      border-radius: 5px;
+      color: #c084fc;
+      padding: 2px 8px;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
+    /* Page selector */
+    .page-selector {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid #22222e;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .page-selector label { font-size: 0.78rem; color: #7777aa; white-space: nowrap; flex-shrink: 0; }
     .page-selector label strong { color: #a0a0cc; }
-
     .page-input {
-      flex: 1;
-      min-width: 140px;
-      background: #1e1e2e;
-      border: 1px solid #33335a;
-      border-radius: 7px;
-      color: #d8d8f0;
-      font-size: 0.85rem;
-      padding: 7px 10px;
-      outline: none;
-      transition: border-color 0.15s;
-      font-family: 'Segoe UI', monospace;
+      flex: 1; min-width: 140px;
+      background: #1e1e2e; border: 1px solid #33335a;
+      border-radius: 7px; color: #d8d8f0;
+      font-size: 0.85rem; padding: 7px 10px;
+      outline: none; transition: border-color 0.15s;
     }
     .page-input:focus { border-color: #7c6ff7; }
     .page-input.invalid { border-color: #f07070; }
-
-    .page-pill-row {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 6px;
-    }
-
+    .page-pill-row { width: 100%; display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
     .page-pill {
-      background: #22223a;
-      border: 1px solid #33335a;
-      border-radius: 5px;
-      font-size: 0.72rem;
-      color: #8888bb;
-      padding: 2px 7px;
-      cursor: pointer;
-      user-select: none;
+      background: #22223a; border: 1px solid #33335a;
+      border-radius: 5px; font-size: 0.72rem; color: #8888bb;
+      padding: 2px 7px; cursor: pointer; user-select: none;
       transition: background 0.12s, border-color 0.12s, color 0.12s;
     }
-    .page-pill.selected {
-      background: #3a2e6a;
-      border-color: #7c6ff7;
-      color: #c8b8ff;
-    }
-
+    .page-pill.selected { background: #3a2e6a; border-color: #7c6ff7; color: #c8b8ff; }
     .select-all-btn, .select-none-btn {
-      font-size: 0.72rem;
-      background: #22223a;
-      border: 1px solid #33335a;
-      border-radius: 5px;
-      color: #7777aa;
-      padding: 2px 8px;
-      cursor: pointer;
-      transition: color 0.12s, border-color 0.12s;
+      font-size: 0.72rem; background: #22223a; border: 1px solid #33335a;
+      border-radius: 5px; color: #7777aa; padding: 2px 8px;
+      cursor: pointer; transition: color 0.12s, border-color 0.12s;
     }
-    .select-all-btn:hover { color: #c8b8ff; border-color: #7c6ff7; }
+    .select-all-btn:hover  { color: #c8b8ff; border-color: #7c6ff7; }
     .select-none-btn:hover { color: #f09090; border-color: #aa5555; }
-
     .page-summary { font-size: 0.72rem; color: #6666aa; margin-top: 4px; width: 100%; }
     .page-summary.warn { color: #f0a070; }
 
     /* Actions */
     .actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-
     .btn {
       padding: 12px 24px; border-radius: 10px;
       font-size: 0.95rem; font-weight: 600;
@@ -215,6 +225,71 @@
     .btn-download:hover { background: #28e088; }
     .btn-download:active { transform: scale(0.97); }
 
+    /* ── Paywall modal ── */
+    #paywall-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #paywall-overlay.show { display: flex; }
+
+    .paywall-card {
+      background: #1a1a24;
+      border: 1px solid #3a2a5a;
+      border-radius: 20px;
+      padding: 40px 36px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+    .paywall-icon { font-size: 3.5rem; display: block; margin-bottom: 16px; }
+    .paywall-card h2 { font-size: 1.5rem; font-weight: 700; color: #e8e8f0; margin-bottom: 10px; }
+    .paywall-card p { font-size: 0.92rem; color: #8888aa; line-height: 1.6; margin-bottom: 20px; }
+
+    .plan-compare {
+      display: flex; gap: 12px; margin-bottom: 24px; text-align: left;
+    }
+    .plan {
+      flex: 1; background: #12121c; border: 1px solid #2a2a3a;
+      border-radius: 10px; padding: 14px 16px;
+    }
+    .plan.highlight { border-color: #7c6ff7; background: #1e1a30; }
+    .plan-name { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #6666aa; margin-bottom: 8px; }
+    .plan.highlight .plan-name { color: #a080ff; }
+    .plan-feature { font-size: 0.82rem; color: #8888aa; margin-bottom: 4px; display: flex; gap: 6px; }
+    .plan-feature .chk { font-size: 0.9rem; }
+    .plan-price { margin-top: 10px; font-size: 1.2rem; font-weight: 700; color: #e8e8f0; }
+    .plan-price span { font-size: 0.75rem; color: #6666aa; font-weight: 400; }
+
+    .btn-pay {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, #7c6ff7, #c084fc);
+      color: #fff; font-size: 1rem; font-weight: 700;
+      border: none; border-radius: 10px; cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      margin-bottom: 12px;
+    }
+    .btn-pay:hover { opacity: 0.9; }
+    .btn-pay:active { transform: scale(0.98); }
+    .btn-pay:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .paywall-close {
+      position: absolute; top: 14px; right: 16px;
+      background: none; border: none; color: #6666aa;
+      font-size: 1.3rem; cursor: pointer; line-height: 1;
+      transition: color 0.15s;
+    }
+    .paywall-close:hover { color: #e8e8f0; }
+
+    .paywall-note { font-size: 0.78rem; color: #55556a; }
+    .paywall-error { font-size: 0.82rem; color: #f07070; margin-top: 8px; min-height: 18px; }
+
     /* Toast */
     #toast {
       position: fixed; bottom: 32px; left: 50%;
@@ -237,6 +312,17 @@
   <p>Combine multiple PDFs into one — pick exactly which pages to include</p>
 </header>
 
+<!-- Tier banner -->
+<div id="tier-banner" class="free">
+  <span class="tier-label" id="tier-label">🔓 Free — up to 3 PDFs</span>
+  <div>
+    <button class="upgrade-link" id="upgrade-link-btn" onclick="openPaywall()">Upgrade for unlimited →</button>
+  </div>
+</div>
+
+<!-- Unlock success notice -->
+<div id="unlock-notice">✅ Payment verified! You can now merge unlimited PDFs for 24 hours. Please re-upload your files below.</div>
+
 <div class="card">
   <div id="drop-zone">
     <input type="file" id="file-input" accept=".pdf" multiple />
@@ -250,7 +336,7 @@
 
   <div class="actions">
     <button class="btn btn-secondary" id="clear-btn" disabled>Clear All</button>
-    <button class="btn btn-primary" id="merge-btn" disabled>Merge PDFs</button>
+    <button class="btn btn-primary"   id="merge-btn" disabled>Merge PDFs</button>
   </div>
 
   <div id="progress-wrap">
@@ -264,7 +350,38 @@
     <button class="btn-download" id="download-btn">⬇ Download Merged PDF</button>
   </div>
 
-  <p class="hint">Drag rows to reorder · Click pages to toggle · All processing is local — nothing is uploaded</p>
+  <p class="hint">Drag rows to reorder · Click pages to toggle · All merging happens locally — nothing is uploaded</p>
+</div>
+
+<!-- Paywall modal -->
+<div id="paywall-overlay">
+  <div class="paywall-card">
+    <button class="paywall-close" onclick="closePaywall()">✕</button>
+    <span class="paywall-icon">🔒</span>
+    <h2>Unlock unlimited merging</h2>
+    <p>You're trying to merge <strong id="paywall-count">4</strong> PDFs.<br>The free plan supports up to <strong>3 PDFs</strong> per merge.</p>
+
+    <div class="plan-compare">
+      <div class="plan">
+        <div class="plan-name">Free</div>
+        <div class="plan-feature"><span class="chk">✅</span> Up to 3 PDFs</div>
+        <div class="plan-feature"><span class="chk">✅</span> Page selection</div>
+        <div class="plan-feature"><span class="chk">✅</span> Local processing</div>
+        <div class="plan-price">$0 <span>forever</span></div>
+      </div>
+      <div class="plan highlight">
+        <div class="plan-name">⚡ Unlimited</div>
+        <div class="plan-feature"><span class="chk">✅</span> Unlimited PDFs</div>
+        <div class="plan-feature"><span class="chk">✅</span> Page selection</div>
+        <div class="plan-feature"><span class="chk">✅</span> Valid for 24 hours</div>
+        <div class="plan-price" id="paywall-price">$1.99 <span>one-time</span></div>
+      </div>
+    </div>
+
+    <button class="btn-pay" id="pay-btn" onclick="startCheckout()">Pay &amp; Unlock →</button>
+    <div class="paywall-error" id="paywall-error"></div>
+    <p class="paywall-note">Secured by Stripe · No card stored · 24-hour access</p>
+  </div>
 </div>
 
 <div id="toast"></div>
@@ -285,13 +402,61 @@
   const mergedInfo   = document.getElementById('merged-info');
   const downloadBtn  = document.getElementById('download-btn');
   const toast        = document.getElementById('toast');
+  const tierBanner   = document.getElementById('tier-banner');
+  const tierLabel    = document.getElementById('tier-label');
+  const upgradeBtn   = document.getElementById('upgrade-link-btn');
+  const unlockNotice = document.getElementById('unlock-notice');
 
   // files: [{name, size, buffer, pageCount, selectedPages: Set<number>}]
   let files = [];
   let mergedBytes = null;
   let dragSrcIdx  = null;
 
-  // ── Drop zone ──────────────────────────────────────────────────
+  const FREE_LIMIT = 3;
+
+  // ── Payment state ───────────────────────────────────────────────
+  function isPaid() {
+    try {
+      const raw = localStorage.getItem('pdf_merger_paid');
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      if (Date.now() > data.expires) { localStorage.removeItem('pdf_merger_paid'); return false; }
+      return true;
+    } catch { return false; }
+  }
+
+  function paidExpiresLabel() {
+    try {
+      const data = JSON.parse(localStorage.getItem('pdf_merger_paid') || '{}');
+      if (!data.expires) return '';
+      const hrs = Math.max(0, Math.round((data.expires - Date.now()) / 3600000));
+      return `(${hrs}h remaining)`;
+    } catch { return ''; }
+  }
+
+  function updateTierBanner() {
+    if (isPaid()) {
+      tierBanner.className = 'paid';
+      tierLabel.textContent = `⚡ Unlimited — paid ${paidExpiresLabel()}`;
+      upgradeBtn.style.display = 'none';
+    } else {
+      tierBanner.className = 'free';
+      tierLabel.textContent = '🔓 Free — up to 3 PDFs';
+      upgradeBtn.style.display = '';
+    }
+  }
+
+  // ── On load ─────────────────────────────────────────────────────
+  window.addEventListener('load', () => {
+    updateTierBanner();
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('unlocked') === '1' && isPaid()) {
+      unlockNotice.style.display = 'block';
+      window.history.replaceState({}, '', '/');
+    }
+  });
+
+  // ── Drop zone ───────────────────────────────────────────────────
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
   dropZone.addEventListener('drop', e => {
@@ -319,29 +484,32 @@
     render();
   }
 
-  // ── Render ─────────────────────────────────────────────────────
+  // ── Render ──────────────────────────────────────────────────────
   function render() {
     fileListEl.innerHTML = '';
     emptyState.style.display = files.length ? 'none' : 'block';
-    mergeBtn.disabled = files.length < 2 || !anyPagesSelected();
+    updateMergeBtn();
     clearBtn.disabled = files.length === 0;
 
+    const paid = isPaid();
+
     files.forEach((f, i) => {
+      const locked = !paid && i >= FREE_LIMIT;
       const item = document.createElement('div');
-      item.className = 'file-item';
+      item.className = 'file-item' + (locked ? ' locked' : '');
       item.dataset.idx = i;
 
-      // top row (draggable)
       const row = document.createElement('div');
       row.className = 'file-row';
-      row.draggable = true;
+      row.draggable = !locked;
       row.innerHTML = `
-        <span class="drag-handle" title="Drag to reorder">⠿</span>
+        <span class="drag-handle" title="${locked ? 'Upgrade to unlock' : 'Drag to reorder'}">⠿</span>
         <span class="file-icon">📄</span>
         <div class="file-info">
           <div class="file-name">${escHtml(f.name)}</div>
           <div class="file-meta">${fmtSize(f.size)} · <span class="page-count">${f.pageCount} page${f.pageCount !== 1 ? 's' : ''}</span></div>
         </div>
+        ${locked ? '<span class="lock-badge">🔒 Requires upgrade</span>' : ''}
         <button class="remove-btn" title="Remove">✕</button>
       `;
 
@@ -352,47 +520,62 @@
         render();
       });
 
-      // drag-to-reorder on row
-      row.addEventListener('dragstart', e => {
-        dragSrcIdx = i;
-        setTimeout(() => item.classList.add('dragging'), 0);
-        e.dataTransfer.effectAllowed = 'move';
-      });
-      row.addEventListener('dragend', () => item.classList.remove('dragging'));
-      item.addEventListener('dragover', e => { e.preventDefault(); item.classList.add('drag-target'); });
-      item.addEventListener('dragleave', () => item.classList.remove('drag-target'));
-      item.addEventListener('drop', e => {
-        e.preventDefault();
-        item.classList.remove('drag-target');
-        if (dragSrcIdx !== null && dragSrcIdx !== i) {
-          const moved = files.splice(dragSrcIdx, 1)[0];
-          files.splice(i, 0, moved);
-          mergedBytes = null;
-          dlSection.style.display = 'none';
-          render();
-        }
-      });
+      if (!locked) {
+        row.addEventListener('dragstart', e => {
+          dragSrcIdx = i;
+          setTimeout(() => item.classList.add('dragging'), 0);
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        row.addEventListener('dragend', () => item.classList.remove('dragging'));
+        item.addEventListener('dragover', e => { e.preventDefault(); item.classList.add('drag-target'); });
+        item.addEventListener('dragleave', () => item.classList.remove('drag-target'));
+        item.addEventListener('drop', e => {
+          e.preventDefault();
+          item.classList.remove('drag-target');
+          if (dragSrcIdx !== null && dragSrcIdx !== i) {
+            const moved = files.splice(dragSrcIdx, 1)[0];
+            files.splice(i, 0, moved);
+            mergedBytes = null;
+            dlSection.style.display = 'none';
+            render();
+          }
+        });
+      }
 
       item.appendChild(row);
 
-      // page selector
-      if (f.pageCount > 0) {
-        const sel = buildPageSelector(f, i);
-        item.appendChild(sel);
+      if (!locked && f.pageCount > 0) {
+        item.appendChild(buildPageSelector(f, i));
       }
 
       fileListEl.appendChild(item);
     });
   }
 
+  function updateMergeBtn() {
+    const paid = isPaid();
+    const hasEnough = files.length >= 2;
+    const overLimit = files.length > FREE_LIMIT && !paid;
+
+    if (overLimit) {
+      mergeBtn.disabled = false;
+      mergeBtn.textContent = `🔒 Unlock to Merge (${files.length} PDFs)`;
+      mergeBtn.style.background = 'linear-gradient(135deg, #5a2e8a, #8a3aaa)';
+    } else {
+      mergeBtn.disabled = !hasEnough || !anyPagesSelected();
+      mergeBtn.textContent = 'Merge PDFs';
+      mergeBtn.style.background = '';
+    }
+  }
+
+  // ── Page selector ───────────────────────────────────────────────
   function buildPageSelector(f, fileIdx) {
     const wrap = document.createElement('div');
     wrap.className = 'page-selector';
 
-    const MAX_PILLS = 40; // show individual pills only for small PDFs
+    const MAX_PILLS = 40;
     const showPills = f.pageCount <= MAX_PILLS;
 
-    // label + text input
     const label = document.createElement('label');
     label.innerHTML = `Pages <strong>(${f.pageCount} total)</strong>:`;
     wrap.appendChild(label);
@@ -402,20 +585,17 @@
     input.className = 'page-input';
     input.placeholder = `e.g. 1-3, 5, 7-${f.pageCount}`;
     input.value = selectedToRangeStr(f.selectedPages, f.pageCount);
-    input.title = 'Enter page numbers or ranges, e.g. 1-3, 5, 8-10';
     wrap.appendChild(input);
 
-    // quick buttons
     const allBtn  = document.createElement('button');
     const noneBtn = document.createElement('button');
-    allBtn.className  = 'select-all-btn';
+    allBtn.className = 'select-all-btn';
     noneBtn.className = 'select-none-btn';
     allBtn.textContent  = 'All';
     noneBtn.textContent = 'None';
     wrap.appendChild(allBtn);
     wrap.appendChild(noneBtn);
 
-    // pill row (only for small PDFs)
     const pillRow = document.createElement('div');
     pillRow.className = 'page-pill-row';
     const pills = [];
@@ -434,7 +614,7 @@
           input.value = selectedToRangeStr(f.selectedPages, f.pageCount);
           input.classList.remove('invalid');
           updateSummary();
-          syncMergeBtn();
+          updateMergeBtn();
         });
         pills.push(pill);
         pillRow.appendChild(pill);
@@ -442,135 +622,120 @@
       wrap.appendChild(pillRow);
     }
 
-    // summary
     const summary = document.createElement('div');
     summary.className = 'page-summary';
     wrap.appendChild(summary);
 
     function updateSummary() {
       const n = f.selectedPages.size;
-      if (n === 0) {
-        summary.textContent = 'No pages selected — this file will be skipped.';
-        summary.classList.add('warn');
-      } else if (n === f.pageCount) {
-        summary.textContent = `All ${f.pageCount} pages selected.`;
-        summary.classList.remove('warn');
-      } else {
-        summary.textContent = `${n} of ${f.pageCount} pages selected.`;
-        summary.classList.remove('warn');
-      }
+      if (n === 0) { summary.textContent = 'No pages selected — this file will be skipped.'; summary.classList.add('warn'); }
+      else if (n === f.pageCount) { summary.textContent = `All ${f.pageCount} pages selected.`; summary.classList.remove('warn'); }
+      else { summary.textContent = `${n} of ${f.pageCount} pages selected.`; summary.classList.remove('warn'); }
     }
 
     function syncPills() {
-      pills.forEach(pill => {
-        pill.classList.toggle('selected', f.selectedPages.has(parseInt(pill.dataset.page)));
-      });
+      pills.forEach(p => p.classList.toggle('selected', f.selectedPages.has(parseInt(p.dataset.page))));
     }
 
-    // input → selection
     input.addEventListener('input', () => {
       const parsed = parseRangeStr(input.value, f.pageCount);
-      if (parsed === null) {
-        input.classList.add('invalid');
-      } else {
-        input.classList.remove('invalid');
-        f.selectedPages = parsed;
-        syncPills();
-        updateSummary();
-        syncMergeBtn();
-      }
+      if (parsed === null) { input.classList.add('invalid'); }
+      else { input.classList.remove('invalid'); f.selectedPages = parsed; syncPills(); updateSummary(); updateMergeBtn(); }
     });
 
-    // All / None
     allBtn.addEventListener('click', () => {
       f.selectedPages = new Set(Array.from({ length: f.pageCount }, (_, k) => k + 1));
       input.value = selectedToRangeStr(f.selectedPages, f.pageCount);
       input.classList.remove('invalid');
-      syncPills();
-      updateSummary();
-      syncMergeBtn();
+      syncPills(); updateSummary(); updateMergeBtn();
     });
 
     noneBtn.addEventListener('click', () => {
       f.selectedPages = new Set();
       input.value = '';
       input.classList.remove('invalid');
-      syncPills();
-      updateSummary();
-      syncMergeBtn();
+      syncPills(); updateSummary(); updateMergeBtn();
     });
 
     updateSummary();
     return wrap;
   }
 
-  // ── Helpers: page range parsing ────────────────────────────────
-
-  // Returns Set<number> or null on invalid input
-  function parseRangeStr(str, max) {
-    if (!str.trim()) return new Set();
-    const parts = str.split(',');
-    const result = new Set();
-    for (const part of parts) {
-      const t = part.trim();
-      if (!t) continue;
-      const rangeMatch = t.match(/^(\d+)\s*-\s*(\d+)$/);
-      const singleMatch = t.match(/^(\d+)$/);
-      if (rangeMatch) {
-        const a = parseInt(rangeMatch[1]);
-        const b = parseInt(rangeMatch[2]);
-        if (a < 1 || b > max || a > b) return null;
-        for (let p = a; p <= b; p++) result.add(p);
-      } else if (singleMatch) {
-        const p = parseInt(singleMatch[1]);
-        if (p < 1 || p > max) return null;
-        result.add(p);
-      } else {
-        return null;
-      }
-    }
-    return result;
+  // ── Paywall ─────────────────────────────────────────────────────
+  function openPaywall() {
+    document.getElementById('paywall-count').textContent = files.length;
+    document.getElementById('paywall-error').textContent = '';
+    document.getElementById('pay-btn').disabled = false;
+    document.getElementById('pay-btn').textContent = 'Pay & Unlock →';
+    document.getElementById('paywall-overlay').classList.add('show');
   }
 
-  // Converts Set<number> to compact range string like "1-3, 5, 7-9"
-  function selectedToRangeStr(set, total) {
-    if (set.size === 0) return '';
-    if (set.size === total) return `1-${total}`;
-    const sorted = [...set].sort((a, b) => a - b);
-    const ranges = [];
-    let start = sorted[0], end = sorted[0];
-    for (let k = 1; k < sorted.length; k++) {
-      if (sorted[k] === end + 1) { end = sorted[k]; }
-      else { ranges.push(start === end ? `${start}` : `${start}-${end}`); start = end = sorted[k]; }
-    }
-    ranges.push(start === end ? `${start}` : `${start}-${end}`);
-    return ranges.join(', ');
+  function closePaywall() {
+    document.getElementById('paywall-overlay').classList.remove('show');
   }
 
-  function anyPagesSelected() {
-    return files.some(f => f.selectedPages && f.selectedPages.size > 0);
-  }
-
-  function syncMergeBtn() {
-    mergeBtn.disabled = files.length < 2 || !anyPagesSelected();
-  }
-
-  // ── Clear ──────────────────────────────────────────────────────
-  clearBtn.addEventListener('click', () => {
-    files = [];
-    mergedBytes = null;
-    dlSection.style.display = 'none';
-    progressWrap.style.display = 'none';
-    render();
+  document.getElementById('paywall-overlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('paywall-overlay')) closePaywall();
   });
 
-  // ── Merge ──────────────────────────────────────────────────────
-  mergeBtn.addEventListener('click', async () => {
+  async function startCheckout() {
+    const payBtn  = document.getElementById('pay-btn');
+    const errEl   = document.getElementById('paywall-error');
+    payBtn.disabled = true;
+    payBtn.textContent = 'Redirecting to Stripe…';
+    errEl.textContent = '';
+
+    try {
+      const res  = await fetch('http://localhost:3000/create-checkout-session', { method: 'POST' });
+
+      // Read raw text first — avoids "Unexpected end of JSON input" on empty/HTML responses
+      const text = await res.text();
+      console.log(res)
+      if (!text) {
+        throw new Error(`Server returned empty response (HTTP ${res.status}). Restart the server: npm start`);
+      }
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error(`Server returned non-JSON (HTTP ${res.status}): ${text.slice(0, 120)}`);
+      }
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'No checkout URL returned. Check server console for details.');
+      }
+    } catch (err) {
+      console.log(err)
+      const msg = err instanceof TypeError
+        ? 'Cannot reach server. Make sure you ran: npm start'
+        : err.message;
+      errEl.textContent = '⚠ ' + msg;
+      payBtn.disabled = false;
+      payBtn.textContent = 'Pay &amp; Unlock →';
+    }
+  }
+
+  // ── Merge btn click ─────────────────────────────────────────────
+  mergeBtn.addEventListener('click', () => {
+    const paid = isPaid();
+    if (files.length > FREE_LIMIT && !paid) {
+      openPaywall();
+      return;
+    }
+    doMerge();
+  });
+
+  async function doMerge() {
     mergeBtn.disabled = true;
     clearBtn.disabled = true;
     progressWrap.style.display = 'block';
     dlSection.style.display = 'none';
     setProgress(0, 'Starting merge…');
+
+    const paid = isPaid();
 
     try {
       const merged = await PDFDocument.create();
@@ -579,10 +744,10 @@
 
       for (let i = 0; i < files.length; i++) {
         const f = files[i];
+        if (!paid && i >= FREE_LIMIT) continue;
         if (!f.selectedPages || f.selectedPages.size === 0) continue;
         setProgress(Math.round((i / files.length) * 85), `Processing: ${f.name}`);
-        const doc = await PDFDocument.load(f.buffer, { ignoreEncryption: false });
-        // convert 1-based selected pages to 0-based indices, sorted
+        const doc     = await PDFDocument.load(f.buffer, { ignoreEncryption: false });
         const indices = [...f.selectedPages].sort((a, b) => a - b).map(p => p - 1);
         const copied  = await merged.copyPages(doc, indices);
         copied.forEach(p => merged.addPage(p));
@@ -603,12 +768,20 @@
       console.error(err);
     } finally {
       progressWrap.style.display = 'none';
-      syncMergeBtn();
+      updateMergeBtn();
       clearBtn.disabled = files.length === 0;
     }
+  }
+
+  // ── Clear ───────────────────────────────────────────────────────
+  clearBtn.addEventListener('click', () => {
+    files = []; mergedBytes = null;
+    dlSection.style.display = 'none';
+    progressWrap.style.display = 'none';
+    render();
   });
 
-  // ── Download ───────────────────────────────────────────────────
+  // ── Download ────────────────────────────────────────────────────
   downloadBtn.addEventListener('click', () => {
     if (!mergedBytes) return;
     const blob = new Blob([mergedBytes], { type: 'application/pdf' });
@@ -618,7 +791,49 @@
     setTimeout(() => URL.revokeObjectURL(url), 5000);
   });
 
-  // ── Utilities ──────────────────────────────────────────────────
+  // ── Range helpers ───────────────────────────────────────────────
+  function parseRangeStr(str, max) {
+    if (!str.trim()) return new Set();
+    const parts = str.split(',');
+    const result = new Set();
+    for (const part of parts) {
+      const t = part.trim();
+      if (!t) continue;
+      const rangeM  = t.match(/^(\d+)\s*-\s*(\d+)$/);
+      const singleM = t.match(/^(\d+)$/);
+      if (rangeM) {
+        const a = parseInt(rangeM[1]), b = parseInt(rangeM[2]);
+        if (a < 1 || b > max || a > b) return null;
+        for (let p = a; p <= b; p++) result.add(p);
+      } else if (singleM) {
+        const p = parseInt(singleM[1]);
+        if (p < 1 || p > max) return null;
+        result.add(p);
+      } else { return null; }
+    }
+    return result;
+  }
+
+  function selectedToRangeStr(set, total) {
+    if (set.size === 0) return '';
+    if (set.size === total) return `1-${total}`;
+    const sorted = [...set].sort((a, b) => a - b);
+    const ranges = [];
+    let start = sorted[0], end = sorted[0];
+    for (let k = 1; k < sorted.length; k++) {
+      if (sorted[k] === end + 1) { end = sorted[k]; }
+      else { ranges.push(start === end ? `${start}` : `${start}-${end}`); start = end = sorted[k]; }
+    }
+    ranges.push(start === end ? `${start}` : `${start}-${end}`);
+    return ranges.join(', ');
+  }
+
+  function anyPagesSelected() {
+    const paid = isPaid();
+    return files.some((f, i) => (!paid && i >= FREE_LIMIT) ? false : f.selectedPages && f.selectedPages.size > 0);
+  }
+
+  // ── Utilities ───────────────────────────────────────────────────
   function setProgress(pct, label) {
     progressBar.style.width = pct + '%';
     progressLbl.textContent = label;

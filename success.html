@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful — PDF Merger</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f0f13;
+      color: #e8e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #1a1a24;
+      border: 1px solid #2a4a38;
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon { font-size: 4rem; margin-bottom: 20px; display: block; }
+    h1 { font-size: 1.8rem; font-weight: 700; color: #60d090; margin-bottom: 10px; }
+    p  { color: #8888aa; font-size: 0.95rem; line-height: 1.6; margin-bottom: 8px; }
+    .highlight { color: #c8c8e8; font-weight: 600; }
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 13px 32px;
+      background: linear-gradient(135deg, #7c6ff7, #c084fc);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .status { margin-top: 20px; font-size: 0.82rem; color: #6666aa; min-height: 20px; }
+    .status.error { color: #f07070; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <span class="icon" id="icon">⏳</span>
+  <h1 id="title">Verifying payment…</h1>
+  <p id="msg">Please wait while we confirm your payment.</p>
+  <div class="status" id="status"></div>
+  <a href="/" class="btn" id="back-btn" style="display:none">← Back to PDF Merger</a>
+</div>
+
+<script>
+  const icon    = document.getElementById('icon');
+  const title   = document.getElementById('title');
+  const msg     = document.getElementById('msg');
+  const status  = document.getElementById('status');
+  const backBtn = document.getElementById('back-btn');
+
+  const params    = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  async function verify() {
+    if (!sessionId) {
+      showError('No session ID found. Payment could not be verified.');
+      return;
+    }
+
+    try {
+      const res  = await fetch(`http://localhost:3000/verify-session?session_id=${encodeURIComponent(sessionId)}`);
+      const data = await res.json();
+
+      if (data.paid) {
+        // Store payment with 24-hour expiry in localStorage
+        const expires = Date.now() + 24 * 60 * 60 * 1000;
+        localStorage.setItem('pdf_merger_paid', JSON.stringify({ expires, sessionId }));
+
+        icon.textContent  = '✅';
+        title.textContent = 'Payment successful!';
+        msg.innerHTML     = 'Your account is now <span class="highlight">unlocked for 24 hours</span>.<br>You can merge unlimited PDFs.';
+        status.textContent = 'Redirecting you back…';
+        backBtn.style.display = 'inline-block';
+
+        setTimeout(() => { window.location.href = '/?unlocked=1'; }, 2000);
+      } else {
+        showError('Payment not completed. Please try again.');
+      }
+    } catch (err) {
+      showError('Could not reach the server. ' + err.message);
+    }
+  }
+
+  function showError(text) {
+    icon.textContent  = '❌';
+    title.textContent = 'Verification failed';
+    msg.textContent   = text;
+    status.className  = 'status error';
+    backBtn.style.display = 'inline-block';
+    backBtn.href = '/cancel.html';
+    backBtn.textContent = '← Go back';
+  }
+
+  verify();
+</script>
+</body>
+</html>

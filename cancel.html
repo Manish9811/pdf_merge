@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Cancelled — PDF Merger</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f0f13;
+      color: #e8e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #1a1a24;
+      border: 1px solid #2a2a3a;
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon { font-size: 4rem; margin-bottom: 20px; display: block; }
+    h1 { font-size: 1.8rem; font-weight: 700; color: #c8c8e8; margin-bottom: 10px; }
+    p  { color: #8888aa; font-size: 0.95rem; line-height: 1.6; }
+    .note {
+      margin-top: 20px;
+      background: #12121c;
+      border: 1px solid #2a2a3a;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      color: #6666aa;
+      line-height: 1.6;
+    }
+    .note strong { color: #9090cc; }
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 13px 32px;
+      background: linear-gradient(135deg, #7c6ff7, #c084fc);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <span class="icon">↩️</span>
+  <h1>Payment cancelled</h1>
+  <p>No charge was made to your card.</p>
+  <div class="note">
+    <strong>Free tier reminder:</strong> You can still merge up to <strong>3 PDFs</strong> for free — no payment needed.<br>
+    Upgrade only if you need to merge more than 3 at once.
+  </div>
+  <a href="/" class="btn">← Back to PDF Merger</a>
+</div>
+</body>
+</html>
